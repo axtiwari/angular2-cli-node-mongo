@@ -1,0 +1,9 @@
+/* autoprefixer: off */
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    grid-auto-rows: minmax(2em, auto);
+}

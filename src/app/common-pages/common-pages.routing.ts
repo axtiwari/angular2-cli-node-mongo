@@ -27,6 +27,10 @@ import { AuthGuard } from '../authentication/auth-guard.service';
 					loadChildren: '../lancamentos/lancamentos.module#LancamentosModule',
 				},
 				{
+					path: 'produtos',
+					loadChildren: '../produtos/produtos.module#ProdutosModule',
+				},
+				{
 					path: '',
 					pathMatch: 'full',
 					redirectTo: 'contas',
