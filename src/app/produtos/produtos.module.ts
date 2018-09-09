@@ -10,11 +10,13 @@ import { SharedPipesModule } from '../pipes/shared-pipes.module';
 import { ProdutosRoutingModule } from './produtos.routing';
 import { ManageProdutosComponent } from './manage-produtos.component';
 import { ProdutosService } from '../services/produtos.service';
+import { ProdutosListComponent } from './produtos-list/produtos-list.component';
 
 
 @NgModule({
 	declarations: [
 		ManageProdutosComponent,
+		ProdutosListComponent,
 	],
 	imports: [
 		CommonModule,
