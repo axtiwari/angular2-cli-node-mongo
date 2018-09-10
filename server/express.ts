@@ -12,6 +12,7 @@ import { userRouter } from "./routes/userRouter";
 import { contaRouter } from "./routes/contaRouter";
 import { lancamentoRouter } from "./routes/lancamentoRouter";
 import { categoriaRouter } from "./routes/categoriaRouter";
+import { produtoRouter } from "./routes/produtoRouter";
 
 
 export const app: express.Application = express();
@@ -36,6 +37,8 @@ app.use("/api/users", userRouter);
 app.use("/api/contas", contaRouter);
 app.use("/api/lancamentos", lancamentoRouter);
 app.use("/api/categorias", categoriaRouter);
+//PARA POC SOMENTE
+app.use("/api/produtos", produtoRouter);
 
 // error handlers
 // development error handler

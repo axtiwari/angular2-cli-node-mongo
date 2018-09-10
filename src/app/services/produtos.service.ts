@@ -2,7 +2,6 @@
 import { Injectable } from '@angular/core';
 
 import { NotificationsService } from 'angular2-notifications';
-import * as moment from 'moment';
 import { Observable, Observer } from 'rxjs';
 
 import { Log } from './../util/log';
@@ -23,6 +22,10 @@ export class ProdutosService extends DataService<Produto> {
 		this.successPostMessage = this.msgService.getMessage(this.msgService.SUCCESS_CREATE_LANCAMENTO);
 		this.successDeleteMessage = this.msgService.getMessage(this.msgService.SUCCESS_DELETE_LANCAMENTO);
 		this.successPutMessage = this.msgService.getMessage(this.msgService.SUCCESS_UPDATE_LANCAMENTO);
+	}
+
+	obterProdutos(){
+		return this._apiHttp.get(`${ProdutosService.baseUrl}/`);
 	}
 
 	create(payLoad) {
