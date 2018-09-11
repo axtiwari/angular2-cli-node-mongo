@@ -1,6 +1,14 @@
 /* autoprefixer: off */
 
-.wrapper {
+.header-prod-wrapper {
     display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: 1fr 1fr;
+	margin-top: 1em;
+	h3{
+		justify-self: start;
+	}
+	button{
+		justify-self: end;
+		width: 5em;
+	}
 }

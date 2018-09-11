@@ -1,5 +1,10 @@
-<h3>Produtos</h3>
+<header class="header-prod-wrapper">
+	<h3>Produtos</h3>
+	<button class="btn btn-success" (click)="addProduto()">Add</button>
+</header>
+
 <hr>
 <main class="wrapper">
+	<produto-edit *ngIf="novoProduto" [produto]="novoProduto"></produto-edit>
 	<produtos-list></produtos-list>
 </main>

@@ -11,12 +11,14 @@ import { ProdutosRoutingModule } from './produtos.routing';
 import { ManageProdutosComponent } from './manage-produtos.component';
 import { ProdutosService } from '../services/produtos.service';
 import { ProdutosListComponent } from './produtos-list/produtos-list.component';
+import { ProdutoEditComponent } from './produto-edit/produto-edit.component';
 
 
 @NgModule({
 	declarations: [
 		ManageProdutosComponent,
 		ProdutosListComponent,
+		ProdutoEditComponent,
 	],
 	imports: [
 		CommonModule,
