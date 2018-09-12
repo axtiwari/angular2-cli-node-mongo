@@ -24,6 +24,7 @@ logger.info('* Logger inicializado.');
 // Disable header: X-Powered-By:Express
 app.disable('x-powered-by');
 app.use(favicon(join(__dirname, "../../src", "favicon.ico")));
+app.use(express.static(join(__dirname, '../../uploadImgs')));
 app.use(express.static(join(__dirname, '../../dist')));
 
 app.use(json());
@@ -32,13 +33,13 @@ app.use(cors());
 
 // api routes
 app.use("/", loginRouter);
+//PARA POC SOMENTE
+app.use("/api/produtos", produtoRouter);
 app.use("/api", protectedRouter);
 app.use("/api/users", userRouter);
 app.use("/api/contas", contaRouter);
 app.use("/api/lancamentos", lancamentoRouter);
 app.use("/api/categorias", categoriaRouter);
-//PARA POC SOMENTE
-app.use("/api/produtos", produtoRouter);
 
 // error handlers
 // development error handler

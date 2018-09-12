@@ -24,7 +24,7 @@ export class ProdutosService extends DataService<Produto> {
 		this.successPutMessage = this.msgService.getMessage(this.msgService.SUCCESS_UPDATE_LANCAMENTO);
 	}
 
-	obterProdutos(){
+	obterProdutos() {
 		return this._apiHttp.get(`${ProdutosService.baseUrl}/`);
 	}
 
@@ -38,6 +38,14 @@ export class ProdutosService extends DataService<Produto> {
 				error => {
 					Log.error(error);
 				});
+	}
+
+	postFile(formData) {
+		return this._apiHttp.post(this.apiBaseUrl, formData,
+			{
+				reportProgress: true,
+				observe: 'events'
+			});
 	}
 
 }

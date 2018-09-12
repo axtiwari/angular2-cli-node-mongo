@@ -1,20 +1,27 @@
-import { Router, Request, Response, NextFunction } from "express";
-import * as assert from "assert";
+import { Router, Request, Response, NextFunction } from 'express';
+import * as assert from 'assert';
 import * as logger from 'logops';
+import { join } from 'path';
+import * as multer from 'multer';
 
-//import { ProdutoService } from '../services/produtoService';
-import { handleError } from "../commons/businessError";
+// import { ProdutoService } from '../services/produtoService';
+import { handleError } from '../commons/businessError';
 
 export const produtoRouter: Router = Router();
 
-//const produtoService: ProdutoService = new ProdutoService();
+// const produtoService: ProdutoService = new ProdutoService();
 
 
-produtoRouter.get("/", function (request: Request & { userName: string }, response: Response, next: NextFunction) {
+const upload = multer(
+	{
+		dest: join(__dirname, '../../uploadImgs/')
+	});
+
+produtoRouter.get('/', function (request: Request & { userName: string }, response: Response, next: NextFunction) {
 
 	let userName = request.userName;
 
-	var produtos = [];
+	let produtos = [];
 	produtos.push({ nome: 'Pipoca', desc: 'Pipoca Doce', valor: 3.5, img: 'assets/img/avatars/1.jpg' });
 	produtos.push({ nome: 'Sanduba', desc: 'Salgado', valor: 35.5, img: 'assets/img/avatars/2.jpg' });
 	produtos.push({ nome: 'Refri', desc: 'Coca-Cola', valor: 7.5, img: 'assets/img/avatars/3.jpg' });
@@ -23,8 +30,8 @@ produtoRouter.get("/", function (request: Request & { userName: string }, respon
 	produtos.push({ nome: 'Chocolate', desc: 'Caseiro', valor: 35.36, img: 'assets/img/avatars/6.jpg' });
 
 	response.json({
-		"status": "sucesso",
-		"data": produtos
+		'status': 'sucesso',
+		'data': produtos
 	});
 
 	// produtoService.getProdutos(userName)
@@ -34,3 +41,11 @@ produtoRouter.get("/", function (request: Request & { userName: string }, respon
 	// 	}))
 	// 	.catch((e: Error) => handleError(e, response));
 });
+
+produtoRouter.post('/', upload.single('myimg'), function (request: any, response: Response, next: NextFunction) {
+	console.log('******* CHEGOU NO POST');
+	console.log('******* IMAGE FILE:');
+	console.log(request.file);
+
+});
+

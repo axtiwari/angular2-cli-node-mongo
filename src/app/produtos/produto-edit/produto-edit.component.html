@@ -2,3 +2,42 @@
 <input type="text" value="{{produto.nome}}">
 <label for="valor">Nome</label>
 <input type="text" value="{{produto.valor}}">
+
+<section class="produto-detail-form">
+	<form (ngSubmit)="salvarLancamento(produtoForm.value)" #produtoForm="ngForm">
+		<div class="card">
+			<div class="card-block">
+				<section class="produto-detail-wrapper">
+
+					<div class="produto-detail-descricao-field">
+						<input [ngModel]="produto.nome" required type="text" class="form-control form-control-sm default-padding default-font"
+						 id="nome" name="nome" placeholder="Nome" [focus]="produto">
+					</div>
+
+					<div class="produto-detail-descricao-field">
+						<input [ngModel]="produto.descricao" required type="text" class="form-control form-control-sm default-padding default-font"
+						 id="descricao" name="descricao" placeholder="Descrição">
+					</div>
+
+					<div class="produto-detail-valor-field">
+						<input style="text-align: right;" [ngModel]="produto.valor" required class="form-control form-control-sm default-padding default-font"
+						 id="valor" name="valor" [input-mask]="'###.##9,99'" [input-mask-options]="{reverse: true}" autocomplete="off"
+						 placeholder="0,00">
+					</div>
+
+					<div class="produto-detail-descricao-field">
+						<input #fileInput style="display:none" type="file" (change)="onSelectFile($event)">
+						<button type="button" (click)="fileInput.click()" class="btn btn-sm btn-primary">Add Image</button>
+					</div>
+
+				</section>
+			</div>
+			<div class="card-footer">
+				<button [disabled]="!produtoForm.form.valid" type="submit" class="btn btn-sm btn-primary">
+					<i class="fa fa-dot-circle-o"></i> Salvar</button>
+				<button (click)="voltar()" type="buttonn" class="btn btn-sm btn-warning">
+					<i class="fa fa-ban"></i> Voltar</button>
+			</div>
+		</div>
+	</form>
+</section>
