@@ -32,9 +32,9 @@ app.use(urlencoded({ extended: true }));
 app.use(cors());
 
 // api routes
-app.use("/", loginRouter);
 //PARA POC SOMENTE
 app.use("/api/produtos", produtoRouter);
+app.use("/", loginRouter);
 app.use("/api", protectedRouter);
 app.use("/api/users", userRouter);
 app.use("/api/contas", contaRouter);

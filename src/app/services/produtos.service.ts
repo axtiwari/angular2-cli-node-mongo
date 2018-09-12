@@ -40,12 +40,8 @@ export class ProdutosService extends DataService<Produto> {
 				});
 	}
 
-	postFile(formData) {
-		return this._apiHttp.post(this.apiBaseUrl, formData,
-			{
-				reportProgress: true,
-				observe: 'events'
-			});
+	postFormData(formData, reqOptions) {
+		return this._apiHttp.postFormData(this.apiBaseUrl, formData, reqOptions);
 	}
 
 }

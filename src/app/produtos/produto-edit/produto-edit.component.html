@@ -1,10 +1,5 @@
-<label for="nome">Nome</label>
-<input type="text" value="{{produto.nome}}">
-<label for="valor">Nome</label>
-<input type="text" value="{{produto.valor}}">
-
 <section class="produto-detail-form">
-	<form (ngSubmit)="salvarLancamento(produtoForm.value)" #produtoForm="ngForm">
+	<form (ngSubmit)="salvarProduto(produtoForm.value)" #produtoForm="ngForm">
 		<div class="card">
 			<div class="card-block">
 				<section class="produto-detail-wrapper">
@@ -28,6 +23,7 @@
 					<div class="produto-detail-descricao-field">
 						<input #fileInput style="display:none" type="file" (change)="onSelectFile($event)">
 						<button type="button" (click)="fileInput.click()" class="btn btn-sm btn-primary">Add Image</button>
+						<button class="btn btn-sm btn-secondary" (click)="onUpload()">Upload!</button>
 					</div>
 
 				</section>
