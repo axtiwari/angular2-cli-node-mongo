@@ -30,11 +30,11 @@ export class ProdutoEditComponent implements OnInit {
 		const fd = new FormData();
 		fd.append('image', this.selectedFile, this.selectedFile.name);
 		this.produtoService.postFile(fd)
-			.subscribe((event: HttpEventType) => {
+			.subscribe((event: any) => {
 
 				if (event.type === HttpEventType.UploadProgress) {
 					console.log('Upload Progress: ' + Math.round(event.loaded / event.total * 100) + '%');
-				} else (event.type === HttpEventType.Response) {
+				} else if (event.type === HttpEventType.Response) {
 					console.log(event);
 				}
 			});
