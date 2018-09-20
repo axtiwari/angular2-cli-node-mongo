@@ -11,10 +11,10 @@ import * as querystring from 'querystring';
 import { secret, length, digest } from '../config/constants';
 import { UserDAO } from "../dal/userDAO";
 
-var request = require('request');
-const http = require('http');
-const https = require('https');
-const fetch = require('node-fetch');
+// var request = require('request');
+// const http = require('http');
+// const https = require('https');
+// const fetch = require('node-fetch');
 
 var HttpsProxyAgent = require('https-proxy-agent');
 var proxy = 'http://localhost:3128';
@@ -136,111 +136,111 @@ loginRouter.get('/login-spotify', function (req, res) {
 		}));
 })
 
-loginRouter.get('/callback', function (req, res) {
-	let userName;
-	let code = req.query.code || null;
-	let clientID = '8a209baf8e0c42eea897b32fe2e5d19a';
-	let clientSecret = '9cd626a83a764fb3a9f5f60bdc8b93e5';
+// loginRouter.get('/callback', function (req, res) {
+// 	let userName;
+// 	let code = req.query.code || null;
+// 	let clientID = '8a209baf8e0c42eea897b32fe2e5d19a';
+// 	let clientSecret = '9cd626a83a764fb3a9f5f60bdc8b93e5';
 
-	let data = {
-		code: code,
-		redirect_uri,
-		grant_type: 'authorization_code'
-	}
+// 	let data = {
+// 		code: code,
+// 		redirect_uri,
+// 		grant_type: 'authorization_code'
+// 	}
 
-	let postData = querystring.stringify(data);
+// 	let postData = querystring.stringify(data);
 
-	fetch('https://accounts.spotify.com/api/token', {
-		method: 'POST',
-		agent: agent,
-		headers: {
-			'Authorization': 'Basic ' + (new Buffer(clientID + ':' + clientSecret).toString('base64')),
-			'Content-Type': 'application/x-www-form-urlencoded',
-			'Content-Length': postData.length,
-		},
-		body: postData
-	})
-		.then(res => res.json())
-		.then(json => {
-			console.log(json);
-			var access_token = json.access_token;
-			console.log('** access_token = ', access_token);
-			if (access_token) {
-				return fetch('https://api.spotify.com/v1/me', {
-					agent: agent,
-					headers: {
-						'Authorization': 'Bearer ' + access_token
-					}
-				});
-			} else {
-				return res.json({
-					"status": "erro",
-					"message": "Erro ao registrar usuário via Spotify!"
-				});
-			}
-		})
-		.then(apiRes => apiRes.json())
-		.then(json => {
-			console.log('** User Data From Spotify: ', json);
-			userName = json.email;
-			return userDAO.getUser(json.email);
-		})
-		.then((usuarioObtido) => {
-			console.log('** usuarioObtido=', usuarioObtido);
+// 	fetch('https://accounts.spotify.com/api/token', {
+// 		method: 'POST',
+// 		agent: agent,
+// 		headers: {
+// 			'Authorization': 'Basic ' + (new Buffer(clientID + ':' + clientSecret).toString('base64')),
+// 			'Content-Type': 'application/x-www-form-urlencoded',
+// 			'Content-Length': postData.length,
+// 		},
+// 		body: postData
+// 	})
+// 		.then(res => res.json())
+// 		.then(json => {
+// 			console.log(json);
+// 			var access_token = json.access_token;
+// 			console.log('** access_token = ', access_token);
+// 			if (access_token) {
+// 				return fetch('https://api.spotify.com/v1/me', {
+// 					agent: agent,
+// 					headers: {
+// 						'Authorization': 'Bearer ' + access_token
+// 					}
+// 				});
+// 			} else {
+// 				return res.json({
+// 					"status": "erro",
+// 					"message": "Erro ao registrar usuário via Spotify!"
+// 				});
+// 			}
+// 		})
+// 		.then(apiRes => apiRes.json())
+// 		.then(json => {
+// 			console.log('** User Data From Spotify: ', json);
+// 			userName = json.email;
+// 			return userDAO.getUser(json.email);
+// 		})
+// 		.then((usuarioObtido) => {
+// 			console.log('** usuarioObtido=', usuarioObtido);
 
 
-			if (!usuarioObtido) {
-				let user: any = {};
-				user.userName = userName;
-				//Criar Salt por usuário
-				const salt = randomBytes(128).toString("base64");
-				user.salt = salt;
-				const password = randomBytes(12).toString("base64");
-				user.password = password;
+// 			if (!usuarioObtido) {
+// 				let user: any = {};
+// 				user.userName = userName;
+// 				//Criar Salt por usuário
+// 				const salt = randomBytes(128).toString("base64");
+// 				user.salt = salt;
+// 				const password = randomBytes(12).toString("base64");
+// 				user.password = password;
 
-				pbkdf2(password, user.salt, 10000, length, digest, function (err, hash) {
-					user.hash = hash.toString("hex");
-					userDAO.insertUser(user).then((resultInsercao) => {
-						console.log('** userName=', userName);
-						userDAO.getUser(userName)
-							.then((savedUser) => {
-								console.log('** USUARIO CRIADO =', savedUser);
+// 				pbkdf2(password, user.salt, 10000, length, digest, function (err, hash) {
+// 					user.hash = hash.toString("hex");
+// 					userDAO.insertUser(user).then((resultInsercao) => {
+// 						console.log('** userName=', userName);
+// 						userDAO.getUser(userName)
+// 							.then((savedUser) => {
+// 								console.log('** USUARIO CRIADO =', savedUser);
 
-								const tokenJWT = sign({ "userName": savedUser.userName, permissions: [] }, secret, { expiresIn: "7d" });
+// 								const tokenJWT = sign({ "userName": savedUser.userName, permissions: [] }, secret, { expiresIn: "7d" });
 
-								let uri = process.env.FRONTEND_URI || 'http://localhost:4200/register';
-								res.redirect(uri + '?token=' + tokenJWT + '&newUser=true');
-							})
-					});
-				});
-			} else {
-				const pbkdf2Promisified = util.promisify(pbkdf2);
+// 								let uri = process.env.FRONTEND_URI || 'http://localhost:4200/register';
+// 								res.redirect(uri + '?token=' + tokenJWT + '&newUser=true');
+// 							})
+// 					});
+// 				});
+// 			} else {
+// 				const pbkdf2Promisified = util.promisify(pbkdf2);
 
-				pbkdf2Promisified(usuarioObtido.password, usuarioObtido.salt, 10000, length, digest).then(function (hash) {
-					logger.info("** NO pbkdf2 hash = %s ", hash);
-					// check if password is active
-					if (hash.toString("hex") === usuarioObtido.hash) {
-						const tokenJWT = sign({ "userName": usuarioObtido.userName, permissions: [] }, secret, { expiresIn: "7d" });
-						logger.info("** tokenJWT = %s ", tokenJWT);
-						let uri = process.env.FRONTEND_URI || 'http://localhost:4200/register';
-						res.redirect(uri + '?token=' + tokenJWT);
-					} else {
-						return res.json({
-							"status": "erro",
-							"message": "Password incorreto!"
-						});
-					}
-				});
-			}
-		})
-		.catch(e => {
-			console.log('** ERRO ao autenticar via Spotify. Erro: ', e);
-			return res.json({
-				"status": "erro",
-				"message": "Erro ao registrar usuário via Spotify!"
-			});
-		});
-})
+// 				pbkdf2Promisified(usuarioObtido.password, usuarioObtido.salt, 10000, length, digest).then(function (hash) {
+// 					logger.info("** NO pbkdf2 hash = %s ", hash);
+// 					// check if password is active
+// 					if (hash.toString("hex") === usuarioObtido.hash) {
+// 						const tokenJWT = sign({ "userName": usuarioObtido.userName, permissions: [] }, secret, { expiresIn: "7d" });
+// 						logger.info("** tokenJWT = %s ", tokenJWT);
+// 						let uri = process.env.FRONTEND_URI || 'http://localhost:4200/register';
+// 						res.redirect(uri + '?token=' + tokenJWT);
+// 					} else {
+// 						return res.json({
+// 							"status": "erro",
+// 							"message": "Password incorreto!"
+// 						});
+// 					}
+// 				});
+// 			}
+// 		})
+// 		.catch(e => {
+// 			console.log('** ERRO ao autenticar via Spotify. Erro: ', e);
+// 			return res.json({
+// 				"status": "erro",
+// 				"message": "Erro ao registrar usuário via Spotify!"
+// 			});
+// 		});
+// })
 
 
 
