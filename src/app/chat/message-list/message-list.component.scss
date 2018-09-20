@@ -1,4 +1,45 @@
-.chatlist{
-	height: 600px;
-	overflow-y: scroll;
-  }
+
+.chatlist {
+    height: 600px;
+    overflow-y: scroll;
+    transition: transform 1s;
+    // &:hover {
+    //     transform: translate(50px, 50px);
+    // }
+}
+
+
+#hacky-input {
+  display: none;
+}
+
+label {
+  display: inline-block;
+}
+
+label.crossRotate {
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  transition-duration: 1s;
+
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -ms-transition-property: -ms-transform;
+  -o-transition-property: -o-transform;
+  transition-property: transform;
+  margin: 0;
+}
+
+#hacky-input:checked ~ label.crossRotate {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: translate(0, 635px);
+}
+
+#hacky-input:checked ~ .chatlist {  
+  transform: translate(0, 635px);
+}
