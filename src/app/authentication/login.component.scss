@@ -5,6 +5,7 @@
     font-weight: 600;
     display: grid;
     grid-template-columns: 1fr;
+    /* autoprefixer: off */
     grid-auto-rows: minmax(200px, auto);
     position: absolute;
     top: 50%;

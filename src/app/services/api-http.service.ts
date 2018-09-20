@@ -23,6 +23,13 @@ export class ApiHttpService {
 		}
 	}
 
+	postFormData(url: string, formData: any, requestOptions?: any) {
+
+		if (this.authService.isLoggedIn()) {
+			return this.http.post(url, formData, requestOptions ? requestOptions : this.getRequestOptionsPadrao());
+		}
+	}
+
 	delete(url: string, requestOptions?: any) {
 
 		if (this.authService.isLoggedIn()) {
