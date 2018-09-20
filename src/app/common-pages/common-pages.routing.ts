@@ -31,6 +31,10 @@ import { AuthGuard } from '../authentication/auth-guard.service';
 					loadChildren: '../produtos/produtos.module#ProdutosModule',
 				},
 				{
+					path: 'chatbot',
+					loadChildren: '../chat/chat.module#ChatModule',
+				},
+				{
 					path: '',
 					pathMatch: 'full',
 					redirectTo: 'contas',

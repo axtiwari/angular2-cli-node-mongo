@@ -9,6 +9,7 @@
 		],
 		"no-use-before-declare":false,
 		"deprecation": false,
+		"no-input-rename": false,
 
 	  "directive-selector": [false, "attribute", "foo", "camelCase"],
 	  "component-selector": [false, "element", "foo", "kebab-case"]
