@@ -1,6 +1,5 @@
 import { ObjectID } from "mongodb";
 import * as logger from 'logops';
-import { Container } from 'typedi';
 import * as assert from "assert";
 
 import { BusinessError } from './../commons/businessError';
