@@ -1,45 +1,59 @@
-
 .chatlist {
     height: 600px;
     overflow-y: scroll;
-    transition: transform 1s;
-    // &:hover {
+    transition: transform 1s; // &:hover {
     //     transform: translate(50px, 50px);
     // }
 }
 
-
 #hacky-input {
-  display: none;
+    display: none;
 }
 
 label {
-  display: inline-block;
+    display: inline-block;
 }
 
 label.crossRotate {
-  -webkit-transition-duration: 1s;
-  -moz-transition-duration: 1s;
-  -ms-transition-duration: 1s;
-  -o-transition-duration: 1s;
-  transition-duration: 1s;
-
-  -webkit-transition-property: -webkit-transform;
-  -moz-transition-property: -moz-transform;
-  -ms-transition-property: -ms-transform;
-  -o-transition-property: -o-transform;
-  transition-property: transform;
-  margin: 0;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -ms-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -ms-transition-property: -ms-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+    margin: 0;
 }
 
-#hacky-input:checked ~ label.crossRotate {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: translate(0, 635px);
+img.crossRotate {
+    border-radius: 10px 10px 0px 0px;
+    cursor: pointer;
 }
 
-#hacky-input:checked ~ .chatlist {  
-  transform: translate(0, 635px);
+div.crossRotate {
+    cursor: pointer;
+    width: 600px;
+    height: 50px;
+    background-color: #b4c3d8;
+    border-radius: 20px 20px 0px 0px;
+    text-align: center;
+    font-size: 1.5em;
+    padding-top: 5px;
+    font-weight: 600;
+    text-shadow: 9px 9px 6px rgba(96, 130, 150, 1);
+}
+
+#hacky-input:checked~label.crossRotate {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: translate(0, 635px);
+}
+
+#hacky-input:checked~.chatlist {
+    transform: translate(0, 635px);
 }

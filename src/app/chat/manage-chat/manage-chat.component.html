@@ -1,6 +1,8 @@
 <h1>Hello World Watson Chatbot </h1>
 <br>
-<div class="chatform">
-	<message-list [messages]="messages"></message-list>
-	<message-form (mensagemEnviada)="mensagemEnviada($event)"></message-form>
+<div class="wrapper-list">
+	<div class="chatform">
+		<message-list [messages]="messages"></message-list>
+		<message-form (mensagemEnviada)="mensagemEnviada($event)"></message-form>
+	</div>
 </div>
