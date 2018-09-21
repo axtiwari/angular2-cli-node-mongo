@@ -2,5 +2,5 @@
 <br>
 <div class="chatform">
 	<message-list [messages]="messages"></message-list>
-	<message-form [message]="message" [messages]="messages"></message-form>
+	<message-form (mensagemEnviada)="mensagemEnviada($event)"></message-form>
 </div>
