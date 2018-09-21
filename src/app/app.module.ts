@@ -15,6 +15,7 @@ import { AuthGuard } from './authentication/auth-guard.service';
 import { AuthService } from './authentication/auth.service';
 import { ApiHttpService } from './services/api-http.service';
 import { MessagesService } from './services/messages.service';
+import { ChatFullModule } from './chat-full/chat-full.module';
 
 registerLocaleData(localePt);
 
@@ -26,6 +27,7 @@ registerLocaleData(localePt);
 		BrowserModule,
 		BrowserAnimationsModule,
 		AuthenticationModule,
+		ChatFullModule,
 		SimpleNotificationsModule.forRoot(),
 		SweetAlert2Module.forRoot(),
 		CommonPagesModule,
