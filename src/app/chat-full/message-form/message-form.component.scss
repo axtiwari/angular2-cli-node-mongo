@@ -1,6 +1,8 @@
 .chatcontrol{
 	float: left;
 	width: 100%;
+	position: fixed;
+	bottom: 0;
 
 	.chatinput{
 	  width: 80%;

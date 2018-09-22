@@ -1,6 +1,11 @@
+.wrapper-list {
+    height: 100%;
+}
 
 .chatform {
+    height: 100%;
     width: 100%;
-    margin: 0;    
-		overflow-y: hidden;		
+    margin: 0;
+    //overflow-y: hidden;
+    overflow-x: hidden;
 }

@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 	imports: [
 		RouterModule.forRoot([{
 			path: '',
-			redirectTo: 'home',
+			redirectTo: 'chat-full',
 			pathMatch: 'full'
 		},
 		{

@@ -1,6 +1,7 @@
 .chatlist {
     height: 100%;
     overflow-y: scroll;
+    margin-top: 50px;
     transition: transform 1s; // &:hover {
     //     transform: translate(50px, 50px);
     // }
@@ -11,7 +12,10 @@
 }
 
 label {
-    display: inline-block;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
 }
 
 label.crossRotate {
@@ -24,9 +28,8 @@ label.crossRotate {
     -moz-transition-property: -moz-transform;
     -ms-transition-property: -ms-transform;
     -o-transition-property: -o-transform;
-    transition-property: transform;
+    transition-property: all;
     margin: 0;
-
     width: 100%;
 }
 
@@ -49,13 +52,17 @@ div.crossRotate {
 }
 
 #hacky-input:checked~label.crossRotate {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: translate(0, 635px);
+    // -webkit-transform: rotate(45deg);
+    // -moz-transform: rotate(45deg);
+    // -ms-transform: rotate(45deg);
+    // -o-transform: rotate(45deg);
+    // transform: translate(0, 635px);
+    //transform: translate(0, calc(100% ));
+    top: calc(100% - 50px);
 }
 
 #hacky-input:checked~.chatlist {
-    transform: translate(0, 635px);
+    // transform: translate(0, 635px);
+    transform: translate(-100%, 0) rotate(90deg); 
+    //transform-origin:bottom left; 
 }
