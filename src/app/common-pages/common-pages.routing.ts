@@ -35,6 +35,10 @@ import { AuthGuard } from '../authentication/auth-guard.service';
 					loadChildren: '../chat/chat.module#ChatModule',
 				},
 				{
+					path: 'reports',
+					loadChildren: '../reports/report.module#ReportModule',
+				},
+				{
 					path: '',
 					pathMatch: 'full',
 					redirectTo: 'contas',
