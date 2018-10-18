@@ -1,11 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import * as assert from 'assert';
 import * as logger from 'logops';
 
 import * as AssistantV1 from 'watson-developer-cloud/assistant/v1';
 // const AssistantV1 = require('watson-developer-cloud/assistant/v1');
 
-// import { ProdutoService } from '../services/produtoService';
 import { handleError } from '../commons/businessError';
 
 export const chatBotRouter: Router = Router();
@@ -20,12 +18,12 @@ const assistant = new AssistantV1({
 chatBotRouter.post('/', function (req: Request & { userName: string }, res: Response, next: NextFunction) {
 
 	try {
-		console.log('Chegou no servidor !');
+		logger.info('Chegou no servidor !');
 
 		const { text, context = {} } = req.body;
 
-		console.log('text = ', text);
-		console.log('context = ', context);
+		logger.info('text = ', text);
+		logger.info('context = ', context);
 
 		const params = {
 			input: { text },
@@ -33,16 +31,25 @@ chatBotRouter.post('/', function (req: Request & { userName: string }, res: Resp
 			context,
 		};
 
-		// console.log('assistant = ', assistant);
-
-		assistant.message(params, (err, response) => {
-			if (err) { res.status(500).json(err); }
-
-			console.log('response = ', response);
+		assistant.message(params, (err, response: any) => {
+			if (err) {
+				res.status(500).json(err);
+			}
+			response = transformResponse(response);
+			logger.info('response = ', response);
 			res.json(response);
 		});
 	} catch (e) {
-		console.log('ERROR = ', e);
+		logger.info('ERROR = ', e);
 	}
 
 });
+
+function transformResponse(response) {
+	let newResponse = {
+		context: response.context,
+		messages: response.output.generic,
+		intents: response.intents
+	}
+	return newResponse;
+}

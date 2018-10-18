@@ -1,27 +1,36 @@
-.list-group-item{
-	height: 10em;
+.list-group-item {
+    height: 100%;
+    button {
+        &.chat-option {
+            margin: 2px 0;
+            border-radius: 10px;
+        }
+    }
+    .message {
+		display: inline;
+        font-size: 1em;
+        font-style: italic;
+        font-weight: 400;
+        &.option {
+			display: block;
+            text-align: right;
+        }
+    }
+    .timeform {
+		// float: left;
+        width: 100%;
+		text-align: right;
+        i {
+			margin-left: 20px;
+			margin-right: 5px;
+        }
+        .timestamp {
+            font-size: 0.6em;
+        }
+    }
+    .avatar {
+		display: inline;
+        width: 3em;
+        margin-right: 20px;
+    }
 }
-
-.message {
-	font-size: 1em;
-	font-style: italic;
-	font-weight: 400;
-  }
-
-  .timeform {
-	float: left;
-	width: 100%;
-
-	i {
-	  margin-left: 20px;
-	}
-
-	.timestamp{
-	  font-size: 0.6em;
-	}
-  }
-
-  .avatar{
-	width: 50px;
-	margin-right: 20px;
-  }

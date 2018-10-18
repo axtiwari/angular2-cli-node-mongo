@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ChatService } from '../chat.service';
 
 @Component({
 	selector: 'message-form',
@@ -12,10 +13,11 @@ export class MessageFormComponent {
 	@Output()
 	mensagemEnviada: EventEmitter<any> = new EventEmitter<any>();
 
-	constructor() { }
+	constructor(private chatService: ChatService) { }
 
 	public sendMessage(): void {
-		this.mensagemEnviada.emit({ message: this.message, from: 'user' });
+		//this.mensagemEnviada.emit({ message: this.message, from: 'user' });
+		this.chatService.selectMessage(this.message);
 		this.message = '';
 	}
 }

@@ -18,6 +18,20 @@ export class ManageChatComponent implements OnInit {
 
 	ngOnInit() {
 		this.enviarMsg('', this.context);
+		this.observarChatMessage();
+	}
+
+	observarChatMessage(): any {
+
+		this.chatService.chatMessage$.subscribe(msg => {
+			console.log('Mensagem recebida VIA SERVICE:', msg);
+
+			// TODO: enviar mensagem via servico
+			let avatarImg = 'assets/img/user.png';
+			let mensagem = new Message(msg, avatarImg, new Date(), 'text');
+			this.messages.push(mensagem);
+			this.enviarMsg(msg, this.context);
+		})
 	}
 
 	mensagemEnviada(args) {
@@ -26,7 +40,7 @@ export class ManageChatComponent implements OnInit {
 
 		// TODO: enviar mensagem via servico
 		let avatarImg = args.from === 'user' ? 'assets/img/user.png' : 'assets/img/bot.png';
-		let msg = new Message(args.message, avatarImg, new Date());
+		let msg = new Message(args.message, avatarImg, new Date(), 'text');
 		this.messages.push(msg);
 		this.enviarMsg(args.message, this.context);
 	}
@@ -39,9 +53,13 @@ export class ManageChatComponent implements OnInit {
 			(res: any) => {
 				console.log('resposta: ', res);
 				this.context = res.context;
-				this.messages.push(
-					new Message(res.output.text, 'assets/img/bot.png', new Date())
-				);
+
+				res.messages.forEach(message => {
+					this.messages.push(
+						new Message(message.text || message.title, 'assets/img/bot.png', new Date(), message.response_type, message.options)
+					);
+				});
+
 			});
 	}
 

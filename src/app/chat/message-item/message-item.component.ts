@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Message } from '../message';
+import { ConstantPool } from '@angular/compiler';
+import { ChatService } from '../chat.service';
 
 @Component({
 	selector: 'message-item',
@@ -9,11 +11,14 @@ import { Message } from '../message';
 export class MessageItemComponent implements OnInit {
 
 	@Input('message')
-	private message: Message;
+	public message: Message;
 
-	constructor() { }
+	constructor(private chatService: ChatService) { }
 
-	ngOnInit() {
+	ngOnInit() { }
+
+	selectOption(option) {
+		console.log('option selected = ', option);
+		this.chatService.selectMessage(option);
 	}
-
 }
