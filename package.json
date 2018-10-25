@@ -23,6 +23,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.0.0-beta.5",
     "@angular/animations": "^6.1.0",
     "@angular/common": "^6.1.0",
     "@angular/compiler": "^6.1.0",
@@ -32,9 +33,6 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
-    "core-js": "2.5.3",
-    "rxjs": "~6.2.0",
-    "zone.js": "~0.8.26",
     "@auth0/angular-jwt": "^2.0.0",
     "@toverux/ngx-sweetalert2": "^4.0.0",
     "angular-calendar": "0.23.2",
@@ -44,6 +42,7 @@
     "bootstrap": "4.0.0",
     "chart.js": "^2.7.2",
     "cookie-parser": "^1.4.3",
+    "core-js": "2.5.3",
     "cors": "^2.8.4",
     "dragula": "3.7.2",
     "express": "^4.14.0",
@@ -63,13 +62,15 @@
     "ng2-charts": "1.6.0",
     "ng2-select": "^2.0.0",
     "ngx-bootstrap": "3.0.1",
+    "rxjs": "~6.2.0",
     "rxjs-compat": "^6.2.1",
     "serve-favicon": "^2.5.0",
     "simple-line-icons": "^2.4.1",
     "spinkit": "1.2.5",
     "sweetalert2": "^7.20.8",
     "ts-helpers": "1.1.2",
-    "watson-developer-cloud": "^3.10.0"
+    "watson-developer-cloud": "^3.10.0",
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",

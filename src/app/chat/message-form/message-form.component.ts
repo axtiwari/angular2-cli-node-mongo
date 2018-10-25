@@ -16,7 +16,6 @@ export class MessageFormComponent {
 	constructor(private chatService: ChatService) { }
 
 	public sendMessage(): void {
-		//this.mensagemEnviada.emit({ message: this.message, from: 'user' });
 		this.chatService.selectMessage(this.message);
 		this.message = '';
 	}

@@ -27,16 +27,17 @@ chatBotRouter.post('/', function (req: Request & { userName: string }, res: Resp
 
 		const params = {
 			input: { text },
-			workspace_id: 'c921db24-9648-4a93-b657-7d4d56969172',
+			// workspace_id: 'c921db24-9648-4a93-b657-7d4d56969172',
+			workspace_id: '1e5f7992-afca-43df-848b-9223d37b6935',			
 			context,
 		};
 
 		assistant.message(params, (err, response: any) => {
+			logger.info('response  do Watson= ', response);
 			if (err) {
 				res.status(500).json(err);
 			}
-			response = transformResponse(response);
-			logger.info('response = ', response);
+			response = transformResponse(response);			
 			res.json(response);
 		});
 	} catch (e) {

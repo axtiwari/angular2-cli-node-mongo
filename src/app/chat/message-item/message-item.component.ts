@@ -18,7 +18,6 @@ export class MessageItemComponent implements OnInit {
 	ngOnInit() { }
 
 	selectOption(option) {
-		console.log('option selected = ', option);
 		this.chatService.selectMessage(option);
 	}
 }
