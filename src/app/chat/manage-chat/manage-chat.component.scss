@@ -6,11 +6,22 @@
     height: 70%;
     border-radius: 20px;
     border: solid 13px #3a3c50;
-	box-shadow: 10px 10px 5px 0px rgba(95, 115, 144, 0.75);
-	z-index: 101s;
+    box-shadow: 10px 10px 5px 0px rgba(95, 115, 144, 0.75);
+    z-index: 101s;
+    background-color: #3a3c50;
     agm-map {
         height: 100%;
         width: 100%;
+    }
+    .btn-danger {
+        border-radius: 50%;
+        font-size: 1.3em;
+        float: right;
+        margin-bottom: 10px;
+        &:hover{
+            color: #000;
+            background-color: darken(#f86c6b, 20%);
+        }
     }
 }
 
@@ -20,7 +31,7 @@
     right: 0;
     z-index: 100;
     display: grid;
-    justify-items: end;
+    justify-items: end;    
 }
 
 h1 {

@@ -74,6 +74,10 @@ export class ManageChatComponent implements OnInit {
 			});
 	}
 
+	hideMaps(){
+		this.showMaps=false;
+	}
+
 	tratarResposta(response: any): any {
 		if (response.intents.some(i => i.intent == 'procurarAgenciaProxima')) {
 			this.showMaps = true;

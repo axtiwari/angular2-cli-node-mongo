@@ -19,7 +19,7 @@ import { ChatRoutingModule } from './chat.routing';
 		HttpClientModule,
 		ChatRoutingModule,
 		AgmCoreModule.forRoot({
-			apiKey: 'API_KEY'
+			apiKey: 'AIzaSyCQJrHzKK4OG_yAzihU62B6s76dMMZJbbA'
 		})
 	],
 	declarations: [ManageChatComponent, MessageListComponent, MessageItemComponent, MessageFormComponent],
